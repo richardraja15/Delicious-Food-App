@@ -1,0 +1,66 @@
+--------------------------------------------------------
+--  File created - Friday-May-24-2019   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table TRN_MENU
+--------------------------------------------------------
+
+  CREATE TABLE "HR"."TRN_MENU" 
+   (	"MENU_ID" NUMBER(10,0), 
+	"MENU_NAME" VARCHAR2(30 BYTE), 
+	"PRICE" NUMBER(10,2), 
+	"CATEGORY_ID" NUMBER(10,0), 
+	"IMAGE" VARCHAR2(50 BYTE)
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into HR.TRN_MENU
+SET DEFINE OFF;
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (1,'veg-Biriyani',120,1,'./images/vegbriyani.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (2,'chicken- Biriyani',150.35,2,'./images/chickenbriyani.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (3,'mushroom-Biriyani',130,1,'./images/vegbriyani.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (4,'tikka-Biriyani',150,2,'./images/tikkabriyani.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (5,'lemon Juice',30.45,3,'./images/lemonjuice.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (6,'apple Juice',40,3,'./images/applejuice.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (7,'mutton-Biriyani',180,2,'./images/muttonbriyani.jpg');
+Insert into HR.TRN_MENU (MENU_ID,MENU_NAME,PRICE,CATEGORY_ID,IMAGE) values (8,'salad',60.22,1,'./images/salad.jpg');
+--------------------------------------------------------
+--  DDL for Index TRN_MENUID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "HR"."TRN_MENUID_PK" ON "HR"."TRN_MENU" ("MENU_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index MENU_NAME_UK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "HR"."MENU_NAME_UK" ON "HR"."TRN_MENU" ("MENU_NAME") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  Constraints for Table TRN_MENU
+--------------------------------------------------------
+
+  ALTER TABLE "HR"."TRN_MENU" ADD CONSTRAINT "MENU_NAME_UK" UNIQUE ("MENU_NAME")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+ 
+  ALTER TABLE "HR"."TRN_MENU" MODIFY ("MENU_NAME" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."TRN_MENU" MODIFY ("PRICE" NOT NULL ENABLE);
+ 
+  ALTER TABLE "HR"."TRN_MENU" ADD CHECK (PRICE>0) ENABLE;
+ 
+  ALTER TABLE "HR"."TRN_MENU" ADD CONSTRAINT "TRN_MENUID_PK" PRIMARY KEY ("MENU_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
